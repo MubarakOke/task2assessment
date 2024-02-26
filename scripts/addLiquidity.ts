@@ -54,7 +54,7 @@ const main = async () => {
 
   const deadline = Math.floor(Date.now() / 1000) + 60 * 10;
 
-  const swapTx = await ROUTER.connect(impersonatedSigner).addLiquidity(
+  const liquidityTx = await ROUTER.connect(impersonatedSigner).addLiquidity(
     USDCAddress,
     DAIAddress,
     amountADesired,
@@ -65,15 +65,15 @@ const main = async () => {
     deadline
   );
 
-  await swapTx.wait();
+  await liquidityTx.wait();
 
-  const usdcBalAfterSwap = await USDC.balanceOf(impersonatedSigner.address);
-  const daiBalAfterSwap = await DAI.balanceOf(impersonatedSigner.address);
+  const usdcBalAfterLiquidity = await USDC.balanceOf(impersonatedSigner.address);
+  const daiBalAfterliquidity = await DAI.balanceOf(impersonatedSigner.address);
 
   console.log("-----------------------------------------------------------------")
   
-  console.log("usdc balance after adding liquidity", ethers.formatUnits(usdcBalAfterSwap, 6) );
-  console.log("dai balance after adding liquidity", ethers.formatUnits(daiBalAfterSwap, 18));
+  console.log("usdc balance after adding liquidity", ethers.formatUnits(usdcBalAfterLiquidity, 6) );
+  console.log("dai balance after adding liquidity", ethers.formatUnits(daiBalAfterliquidity, 18));
 };
 
 main().catch((error) => {
