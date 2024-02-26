@@ -18,8 +18,8 @@ const main = async () => {
   const amountInMax = ethers.parseEther("100");
 
 
-  const amountADesired = ethers.parseUnits("20000", 6);
-  const amountBDesired = ethers.parseUnits("200000000000000000000", 18);
+  const amountADesired = ethers.parseUnits("10000", 6);
+  const amountBDesired = ethers.parseUnits("300000000000000000000", 18);
 
 
   const USDC = await ethers.getContractAt("IMyToken", USDCAddress);

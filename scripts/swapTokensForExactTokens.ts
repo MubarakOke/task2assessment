@@ -13,8 +13,8 @@ const main = async () => {
     await helpers.impersonateAccount(USDCHolder);
     const impersonatedSigner = await ethers.getSigner(USDCHolder);
 
-    const amountOut = ethers.parseUnits("2000", 6);
-    const amountInMax = ethers.parseUnits("2", 6)
+    const amountOut = ethers.parseUnits("90000000000000", 6);
+    const amountInMax = ethers.parseUnits("2000", 6)
 
     const USDC = await ethers.getContractAt("IMyToken", USDCAddress);
     const DAI = await ethers.getContractAt("IMyToken", DAIAddress);
@@ -29,6 +29,8 @@ const main = async () => {
     const wethBal = await WETH.balanceOf(impersonatedSigner.address);
     const usdcBal = await USDC.balanceOf(impersonatedSigner.address);
     const daiBal = await DAI.balanceOf(impersonatedSigner.address);
+
+    console.log("--------------------------Interaction for swapTokensForExactTokens---------------------------------------")
 
     console.log("USDC Balance:", ethers.formatUnits(usdcBal, 6))
     console.log("DAI Balance:", ethers.formatUnits(daiBal, 18));
@@ -53,6 +55,7 @@ const main = async () => {
     
     console.log("usdc balance after swap", ethers.formatUnits(usdcBalAfterSwap, 6) );
     console.log("dai balance after swap", ethers.formatUnits(daiBalAfterSwap, 18) );
+    
 }
 
 main().catch((error) => {
